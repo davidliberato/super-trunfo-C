@@ -5,8 +5,8 @@ int main (){
 
     char estado1 ,codigo_da_carta1[10], nome_da_cidade1[50], estado2 ,codigo_da_carta2[10], nome_da_cidade2[50];
     int numero_habitantes1, numeros_pontos_turisticos1, numero_habitantes2, numeros_pontos_turisticos2;
-    float area1, pib1, area2, pib2;
-  
+    float area1, pib1, area2, pib2, densidade_populacional1, pib_percapita1, densidade_populacional2, pib_percapita2;
+ 
     // Inicializando a captação dos dados do usuario para a Carta 01
     printf("Digite a LETRA do Estado: ");
     scanf(" %c", &estado1);
@@ -29,7 +29,7 @@ int main (){
 
     printf("Digite a quantidade de Pontos Turisticos: ");
     scanf("%d", &numeros_pontos_turisticos1);
-
+ 
     // Mostrando os dados da Carta 01
     printf("\n######### Carta 1 ########\n");
     printf("Estado: %c\n", estado1);
@@ -37,8 +37,16 @@ int main (){
     printf("Nome da Cidade: %s", nome_da_cidade1); // Sem a necessidade da quebra de linha, pois o fgets incorpora o "\n" introduzido pelo usuario.
     printf("População: %d \n", numero_habitantes1);
     printf("Área: %.2f km²\n", area1);
-    printf("PIB: R$ %.2f \n", pib1); // %.2f -> Limita a quantidade de casas decimais após o ponto.
+    printf("PIB: R$ %.2f bilhões \n", pib1); // %.2f -> Limita a quantidade de casas decimais após o ponto.
     printf("Número de Pontos Turisticos: %d \n", numeros_pontos_turisticos1);
+    
+     // usei a conversão para double para melhorar a precisão, porém com numeros muito alto, ainda não funciona tão bem.
+    densidade_populacional1 = (double) numero_habitantes1 / (double) area1;
+    pib1 *= 1000000000; // Convertendo o PIB que foi inserido em Bilhões para Reais,
+    pib_percapita1 = (double) pib1 / (double)  numero_habitantes1;
+    
+    printf("Densidade Populacional: %.2f hab/km² \n", densidade_populacional1);
+    printf("PIB per Capita: R$ %.2f \n", pib_percapita1);
 
     printf("\n------------------------------\n");
 
@@ -74,8 +82,15 @@ int main (){
     printf("Nome da Cidade: %s", nome_da_cidade2);
     printf("População: %d \n", numero_habitantes2);
     printf("Área: %.2f km²\n", area2);
-    printf("PIB: R$ %.2f \n", pib2);
+    printf("PIB: R$ %.2f bilhões\n", pib2);
     printf("Número de Pontos Turisticos: %d \n", numeros_pontos_turisticos2);
+   
+    densidade_populacional2 = (double) numero_habitantes2 / (double) area2;
+    pib2 *= 1000000000;
+    pib_percapita2 = (double) pib2 / (double)  numero_habitantes2;
+    
+    printf("Densidade Populacional: %.2f hab/km² \n", densidade_populacional2);
+    printf("PIB per Capita: R$ %.2f \n", pib_percapita2);
     
     printf("\n------------------------------\n");
     
